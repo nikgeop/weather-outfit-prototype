@@ -1,0 +1,15 @@
+body {
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: rgb(0, 0, 0);
+  text-align: left;
+  font-family: Arial, sans-serif;
+}
+
+.placeholder {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  max-width: 600px; 
+}

@@ -122,19 +122,36 @@ button:hover
 
 
 
-/* ========== Weather report page is here ========== */
 #weather-report-page
 {
-    width: 100px;
-    height: 100px;
-    background-color: white;
-
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: calc(min(100vw, 100vh) - min(4vw, 4vh));
+    aspect-ratio: 9/16;
+    background-color: antiquewhite;
+    border-radius: 16px;
+    outline: solid 1px black;
 }
 
-/* ========== Add Clothing page is here ========== */
-#add-clothing-page
+#add-clothing-page 
 {
-    width: 100px;
-    height: 100px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+    justify-content: flex-start;
+    height: calc(min(100vw, 100vh) - min(4vw, 4vh));
+    aspect-ratio: 9/16;
+    background-color: antiquewhite;
+    border-radius: 16px;
+    outline: solid 1px black;
+}
+#clothing-main
+{
+  align-items: center;
+}
+#weather-main
+{
+  align-items: center;
 }

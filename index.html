@@ -16,7 +16,7 @@
             </div>
 
             <div id="main-weather-container">
-                <button id="weather-scroll-left" class="button-icon"><</button>
+                <button id="weather-scroll-left" class="button-icon"></button>
                 <div class="weather-container">
 
 
@@ -54,8 +54,29 @@
             </div>
         </div>
 
-        <!-- <div id="weather-report-page"></div> -->
-        <!-- <div id="add-clothing-page"></div> -->
+                    <!-- Weather report page -->
+        <div id="weather-report-page" style="display:none;">
+            <div class="top-bar">
+              <button id="back-to-main-1">← Back</button>
+              <div style="flex:1"></div>
+            </div>
+            <div id="weather-main">
+                <h2>Weather Report</h2>
+                <!-- Add your form or upload buttons here -->
+            </div>
+        </div>
+
+            <!-- Add clothing page -->
+        <div id="add-clothing-page" style="display:none;">
+            <div class="top-bar">
+              <button id="back-to-main-2">← Back</button>
+              <div style="flex:1"></div>
+            </div>
+            <div id="clothing-main">
+                <h2>Add New Clothing</h2>
+                <!-- Add your form or upload buttons here -->
+            </div>
+        </div>
         <script src="main/main.js"></script>
     </body>
 </html>

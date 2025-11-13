@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const rightButton = document.querySelector(".top-bar #weather-scroll-right");
   const back1 = document.getElementById("back-to-main-1");
   const back2 = document.getElementById("back-to-main-2");
+  const image_input = document.querySelector("#image_input");
 
   // Go to weather report
   leftButton.addEventListener("click", () => {
@@ -31,4 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
     addClothingPage.style.display = "none";
     mainPage.style.display = "flex";
   });
+
+  // Insert image
+  image_input.addEventListener("change", function () {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        uploaded_image = reader.result;
+        document.querySelector("#display_image").style.backgroundImage = `url(${uploaded_image})`;
+    });
+    reader.readAsDataURL(this.files[0]);
+  })
 });

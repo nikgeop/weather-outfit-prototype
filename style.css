@@ -155,3 +155,11 @@ button:hover
 {
   align-items: center;
 }
+
+#display_image {
+    width: 145px;
+    height: 145px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+  }

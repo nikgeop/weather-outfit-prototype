@@ -157,9 +157,8 @@ button:hover
 }
 
 #display_image {
-    width: 145px;
-    height: 145px;
     border: 1px solid black;
+    outline-offset: -0.5px;
     background-position: center;
     background-size: cover;
   }

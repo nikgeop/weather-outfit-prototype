@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainPage = document.getElementById("main-page");
   const weatherPage = document.getElementById("weather-report-page");
   const addClothingPage = document.getElementById("add-clothing-page");
-  const closet = document.getElementById("closet");
 
   // Buttons
   const leftButton = document.querySelector(".top-bar #weather-scroll-left");

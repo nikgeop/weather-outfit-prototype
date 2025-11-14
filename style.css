@@ -136,6 +136,8 @@ button:hover
     outline: solid 1px black;
     outline-offset: -0.5px;
     background-color: floralwhite;
+    background-position: center;
+    background-size: cover;
 }
 
 #weather-report-page

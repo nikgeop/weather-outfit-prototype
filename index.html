@@ -19,7 +19,6 @@
                 <button id="weather-scroll-left" class="button-icon"></button>
                 <div class="weather-container">
 
-
                     <div class="weather-slot">
                         <div style="font-size: min(3vw, 3vh)">1AM</div>
                         <div style="font-size: min(5vw, 5vh)">🌧</div>
@@ -42,15 +41,9 @@
                 <button id="refresh-button" class="button-icon">⟳</button>
             </div>
             <div id="outfit-grid">
-                <div id="outfit-shirt-1" class="outfit"></div>
-                <div id="outfit-shirt-2" class="outfit"></div>
-                <div id="outfit-shirt-3" class="outfit"></div>
-                <div id="outfit-pants-1" class="outfit"></div>
-                <div id="outfit-pants-2" class="outfit"></div>
-                <div id="outfit-pants-3" class="outfit"></div>
-                <div id="outfit-shoes-1" class="outfit"></div>
-                <div id="outfit-shoes-2" class="outfit"></div>
-                <div id="outfit-shoes-3" class="outfit"></div>
+                <div id="shirt" class="outfit"></div>
+                <div id="pants" class="outfit"></div>
+                <div id="shoes" class="outfit"></div>
             </div>
         </div>
 
@@ -73,8 +66,19 @@
               <div style="flex:1"></div>
             </div>
             <div id="clothing-main">
-                <h2>Add New Clothing</h2>
+                <h2>Your Closet</h2>
                 <!-- Add your form or upload buttons here -->
+                <div id="closet">
+                    <div id="hot-shirt-1" class="clothes" style="background-image: url('https://www.mrbigandtall.ca/cdn/shop/products/BW-5463-964-1101_black_1800x.jpg?v=1656516131')"></div>
+                    <div id="cold-shirt-1" class="clothes" style="background-image: url('https://coach.scene7.com/is/image/Coach/cbd41_blk_a0?$mobileProductTile$')"></div>
+                    <div id="neutral-shirt-1" class="clothes" style="background-image: url('https://image.hm.com/assets/hm/bf/74/bf7470dac19e9447f0a0d7497a1b3b01f47563c0.jpg?imwidth=768')"></div>
+                    <div id="hot-pants-2" class="clothes" style="background-image: url('https://rab.equipment/media/catalog/product/w/o/womens_torque_mountain_shorts_orionblue_qfv_97_orb.jpg?optimize=medium&fit=bounds&height=&width=')"></div>
+                    <div id="cold-pants-2" class="clothes" style="background-image: url('https://img.abercrombie.com/is/image/anf/KIC_131-3206-0029-278_prod1?policy=product-large')"></div>
+                    <div id="neutral-pants-2" class="clothes" style="background-image: url('https://cdni.llbean.net/is/image/wim/505026_33335_41')"></div>
+                    <div id="hot-shoes-3" class="clothes" style="background-image: url('https://ca.archiesfootwear.com/cdn/shop/files/WhiteBirdsEye_1000x.jpg?v=1683182535')"></div>
+                    <div id="cold-shoes-3" class="clothes" style="background-image: url('https://assets.timberland.com/images/t_Thumbnail/v1741199070/TB110061713-HERO/Mens-Timberland-Premium-6Inch-Waterproof-Boot.png')"></div>
+                    <div id="neutral-shoes-3" class="clothes" style="background-image: url('https://asics.scene7.com/is/image/asics/1183C429_200_SR_RT_GLB?$otmag_zoom$&qlt=99,1')"></div>
+                </div>
             </div>
         </div>
         <script src="main/main.js"></script>

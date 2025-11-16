@@ -31,4 +31,29 @@ document.addEventListener("DOMContentLoaded", () => {
     addClothingPage.style.display = "none";
     mainPage.style.display = "flex";
   });
+
+
+  const shirtSlot = document.getElementById("shirt");
+  const pantsSlot = document.getElementById("pants");
+  const shoesSlot = document.getElementById("shoes");
+//helper for copying image from closet to main, should be reused for randomization
+function copyBackground(fromId, toElement) {
+    const source = document.getElementById(fromId);  // stores id of intended clothing item from closet
+
+    const background = source.style.backgroundImage; //stores image in closet
+
+    //sets image and properly formats it in main
+    toElement.style.backgroundImage = background;
+    toElement.style.backgroundSize = "cover";
+    toElement.style.backgroundPosition = "center";
+    toElement.style.backgroundRepeat = "no-repeat";
+}
+  // to be deleted, just for demonstration 
+  function setOutfit() {
+    copyBackground("neutral-shirt-1", shirtSlot);
+    copyBackground("neutral-pants-2", pantsSlot);
+    copyBackground("neutral-shoes-3", shoesSlot);
+  }
+
+  setOutfit();
 });

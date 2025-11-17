@@ -1,5 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App Prototype</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="main-page">
+      <div class="top-bar">
+        <button id ="weather-scroll-left">←☁</button>
+        <div style="flex:1"></div>
+        <button id="weather-scroll-right">👕→</button>
+      </div>
+      <div id="main-weather-container">
+        <button id="scroll-arrow-left" class="scroll-arrow"><</button>
+        <div class="weather-container">
+        </div>
+        <button id="scroll-arrow-right" class="scroll-arrow">></button>
+      </div>
+      <div class="divider" style="background-color: black; width:90%, height: 2px"></div>
+      <div id="todays-picks-container">
+        <Text>Todays Top Picks</Text>
+        <button id="refresh-button" class="button-icon">⟳</button>
+      </div>
+      <div id="outfit-grid">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,7 +105,9 @@
                     <div id="neutral-shoes-3" class="clothes" style="background-image: url('https://asics.scene7.com/is/image/asics/1183C429_200_SR_RT_GLB?$otmag_zoom$&qlt=99,1')"></div>
                 </div>
             </div>
-        </div>
-        <script src="main/main.js"></script>
-    </body>
+        
+      </div>
+    </div>
+    <script src="main/main.js"></script>
+  </body>
 </html>

@@ -25,6 +25,47 @@
         <button id="refresh-button" class="button-icon">⟳</button>
       </div>
       <div id="outfit-grid">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather App Prototype</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div id="main-page">
+            <div class="top-bar">
+                <button id="weather-scroll-left">←☁</button>
+                <div style="flex:1"></div>
+                <button id="weather-scroll-right">👕→</button>
+            </div>
+
+            <div id="main-weather-container">
+                <button id="weather-scroll-left" class="button-icon"></button>
+                <div class="weather-container">
+
+                    <div class="weather-slot">
+                        <div style="font-size: min(3vw, 3vh)">1AM</div>
+                        <div style="font-size: min(5vw, 5vh)">🌧</div>
+                        <div style="font-size: min(3vw, 3vh)">4°C</div>
+                    </div>
+                    <div class="weather-slot">
+                        <div style="font-size: min(3vw, 3vh)">2AM</div>
+                        <div style="font-size: min(5vw, 5vh)">🌧</div>
+                        <div style="font-size: min(3vw, 3vh)">5°C</div>
+                    </div>
+
+                </div>
+
+                <button id="weather-scroll-right" class="button-icon">></button>
+            </div>
+
+            <div style="background-color: black; width:80%; height: 2px"></div>
+            <div id="todays-picks-container">
+                <Text>Todays Top Picks</Text>
+                <button id="refresh-button" class="button-icon">⟳</button>
+            </div>
+            <div id="outfit-grid">
                 <div id="shirt" class="outfit"></div>
                 <div id="pants" class="outfit"></div>
                 <div id="shoes" class="outfit"></div>

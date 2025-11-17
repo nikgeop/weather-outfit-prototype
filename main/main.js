@@ -31,10 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
     mainPage.style.display = "flex";
   });
 
+  //clothing logic
   const shirtSlot = document.getElementById("shirt");
   const pantsSlot = document.getElementById("pants");
   const shoesSlot = document.getElementById("shoes");
 
+  let currentTemp = 15; // default to 15 if weather fails
   //helper for copying image from closet to main, should be reused for randomization
   function copyBackground(fromId, toElement) {
     const source = document.getElementById(fromId);  // stores id of intended clothing item from closet
@@ -82,6 +84,59 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   refreshButton.addEventListener("click", refreshOutfit);
+
+  async function loadWeather(){
+    const lat = 49.2497;
+    const lon = -123.1193;
+    try{
+      const response = await fetch(
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&timezone=auto`
+      );
+      const data = await response.json();
+      const currentHour = new Date().getHours();
+      const weatherContainer = document.querySelector(".weather-container");
+      weatherContainer.innerHTML ="";
+      for(let i = currentHour; i< currentHour+8; i++){
+        const temp = Math.round(data.hourly.temperature_2m[i]);
+        const code = data.hourly.weathercode[i];
+
+        const timeLabel = new Date(data.hourly.time[i]).toLocaleTimeString('en-US',{hour: 'numeric'});
+      
+        const slot = document.createElement("div");
+        slot.className = "weather-slot";
+        slot.innerHTML =`
+          <div style = "font-size: min(1.5vw, 1.5vh)">${timeLabel}</div>
+          <div style = "font-size: min(2vw, 2vh)">${getWeatherEmoji(code)}</div>
+          <div style = "font-size: min(1.5vw, 1.5vh)">${temp}°C</div>
+        `;
+        weatherContainer.appendChild(slot);
+       } 
+      }catch(error){
+        console.error("Weather load failed:", error);
+      }
+    
+    function getWeatherEmoji(code){
+      if(code<=3) return "☁️";
+      if(code <= 48) return "🌫️";
+      if(code <= 67) return "🌧️";
+      if(code <= 77) return "❄️";
+      if(code <= 82) return "🌧️";
+      if(code >=95) return "⛈️";
+      return "☀️";
+    }
+    const scrollLeftBtn = document.getElementById("scroll-arrow-left");
+    const scrollRightBtn = document.getElementById("scroll-arrow-right");
+    const wContainer = document.querySelector(".weather-container");
+    if(scrollLeftBtn && scrollRightBtn && wContainer){
+      scrollLeftBtn.addEventListener("click",()=>{
+        wContainer.scrollBy({left: -100, behavior: 'smooth'});
+      });
+      scrollRightBtn.addEventListener("click",() =>{
+        wContainer.scrollBy({left: -100, behavior: 'smooth'});
+      });
+    }
+  }
+  loadWeather();
 
 });
 

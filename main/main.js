@@ -31,25 +31,26 @@ document.addEventListener("DOMContentLoaded", () => {
     mainPage.style.display = "flex";
   });
 
-  // Clothing logic
+  //clothing logic
   const shirtSlot = document.getElementById("shirt");
   const pantsSlot = document.getElementById("pants");
   const shoesSlot = document.getElementById("shoes");
 
-  let currentTemp = 15; // default if weather fails
-
+  let currentTemp = 15; // default to 15 if weather fails
+  //helper for copying image from closet to main, should be reused for randomization
   function copyBackground(fromId, toElement) {
-    const source = document.getElementById(fromId);
-    if (!source) return;
+    const source = document.getElementById(fromId);  // stores id of intended clothing item from closet
 
-    const background = source.style.backgroundImage;
+    const background = source.style.backgroundImage; //stores image in closet
 
+    //sets image and properly formats it in main
     toElement.style.backgroundImage = background;
     toElement.style.backgroundSize = "cover";
     toElement.style.backgroundPosition = "center";
     toElement.style.backgroundRepeat = "no-repeat";
   }
 
+  // to be deleted, just for demonstration 
   function setOutfit() {
     copyBackground("neutral-shirt-1", shirtSlot);
     copyBackground("neutral-pants-2", pantsSlot);
@@ -58,117 +59,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setOutfit();
 
+  // refresh outfit button
   const refreshButton = document.getElementById("refresh-button");
+ 
+  // Gets a random clothing item based on type
+  function getRandomItem(prefix) {
+    const items = Array.from(
+      document.querySelectorAll(`#closet .clothes[id*='${prefix}']`)
+    );
+    if (items.length === 0) return null;
 
-  //  Refresh button 
+    const random = items[Math.floor(Math.random() * items.length)];
+    return random.id;
+  }
+
   function refreshOutfit() {
-    let category = "";
+    const shirtId = getRandomItem("shirt");
+    const pantsId = getRandomItem("pants");
+    const shoesId = getRandomItem("shoes");
 
-    if (currentTemp <= 10) category = "cold";
-    else if (currentTemp >= 25) category = "hot";
-    else category = "neutral";
-
-    function pick(list) {
-      return list[Math.floor(Math.random() * list.length)];
-    }
-
-    const shirts = Array.from(
-      document.querySelectorAll(
-        `#closet .clothes[id*='${category}-shirt'],
-         #closet .clothes[id*='${category}-top'],
-         #closet .clothes[id*='${category}-jacket'],
-         #closet .clothes[id*='${category}-sweater']`
-      )
-    );
-
-    const pants = Array.from(
-      document.querySelectorAll(
-        `#closet .clothes[id*='${category}-pants'],
-         #closet .clothes[id*='${category}-jeans'],
-         #closet .clothes[id*='${category}-cargos'],
-         #closet .clothes[id*='${category}-shorts'],
-         #closet .clothes[id*='${category}-bottom']`
-      )
-    );
-
-    const shoes = Array.from(
-      document.querySelectorAll(
-        `#closet .clothes[id*='${category}-shoes'],
-         #closet .clothes[id*='${category}-boots'],
-         #closet .clothes[id*='${category}-slides'],
-         #closet .clothes[id*='${category}-footwear']`
-      )
-    );
-
-    const chosenShirt = pick(shirts);
-    const chosenPants = pick(pants);
-    const chosenShoes = pick(shoes);
-
-    if (chosenShirt) copyBackground(chosenShirt.id, shirtSlot);
-    if (chosenPants) copyBackground(chosenPants.id, pantsSlot);
-    if (chosenShoes) copyBackground(chosenShoes.id, shoesSlot);
+    copyBackground(shirtId, shirtSlot);
+    copyBackground(pantsId, pantsSlot);
+    copyBackground(shoesId, shoesSlot);
   }
 
   refreshButton.addEventListener("click", refreshOutfit);
 
-  async function loadWeather() {
+  async function loadWeather(){
     const lat = 49.2497;
     const lon = -123.1193;
-    try {
+    try{
       const response = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&timezone=auto`
       );
       const data = await response.json();
       const currentHour = new Date().getHours();
       const weatherContainer = document.querySelector(".weather-container");
-      weatherContainer.innerHTML = "";
-
-      // this updates the temperature for outfit selection
-      currentTemp = Math.round(data.hourly.temperature_2m[currentHour]);
-
-      for (let i = currentHour; i < currentHour + 8; i++) {
+      weatherContainer.innerHTML ="";
+      for(let i = currentHour; i< currentHour+8; i++){
         const temp = Math.round(data.hourly.temperature_2m[i]);
         const code = data.hourly.weathercode[i];
 
-        const timeLabel = new Date(data.hourly.time[i]).toLocaleTimeString("en-US", {
-          hour: "numeric"
-        });
-
+        const timeLabel = new Date(data.hourly.time[i]).toLocaleTimeString('en-US',{hour: 'numeric'});
+      
         const slot = document.createElement("div");
         slot.className = "weather-slot";
-        slot.innerHTML = `
-          <div style="font-size: min(1.5vw, 1.5vh)">${timeLabel}</div>
-          <div style="font-size: min(2vw, 2vh)">${getWeatherEmoji(code)}</div>
-          <div style="font-size: min(1.5vw, 1.5vh)">${temp}°C</div>
+        slot.innerHTML =`
+          <div style = "font-size: min(1.5vw, 1.5vh)">${timeLabel}</div>
+          <div style = "font-size: min(2vw, 2vh)">${getWeatherEmoji(code)}</div>
+          <div style = "font-size: min(1.5vw, 1.5vh)">${temp}°C</div>
         `;
         weatherContainer.appendChild(slot);
+       } 
+      }catch(error){
+        console.error("Weather load failed:", error);
       }
-    } catch (error) {
-      console.error("Weather load failed:", error);
-    }
-
-    function getWeatherEmoji(code) {
-      if (code <= 3) return "☁️";
-      if (code <= 48) return "🌫️";
-      if (code <= 67) return "🌧️";
-      if (code <= 77) return "❄️";
-      if (code <= 82) return "🌧️";
-      if (code >= 95) return "⛈️";
+    
+    function getWeatherEmoji(code){
+      if(code<=3) return "☁️";
+      if(code <= 48) return "🌫️";
+      if(code <= 67) return "🌧️";
+      if(code <= 77) return "❄️";
+      if(code <= 82) return "🌧️";
+      if(code >=95) return "⛈️";
       return "☀️";
     }
-
     const scrollLeftBtn = document.getElementById("scroll-arrow-left");
     const scrollRightBtn = document.getElementById("scroll-arrow-right");
     const wContainer = document.querySelector(".weather-container");
-    if (scrollLeftBtn && scrollRightBtn && wContainer) {
-      scrollLeftBtn.addEventListener("click", () => {
-        wContainer.scrollBy({ left: -100, behavior: "smooth" });
+    if(scrollLeftBtn && scrollRightBtn && wContainer){
+      scrollLeftBtn.addEventListener("click",()=>{
+        wContainer.scrollBy({left: -100, behavior: 'smooth'});
       });
-      scrollRightBtn.addEventListener("click", () => {
-        wContainer.scrollBy({ left: 100, behavior: "smooth" });
+      scrollRightBtn.addEventListener("click",() =>{
+        wContainer.scrollBy({left: -100, behavior: 'smooth'});
       });
     }
   }
-
   loadWeather();
+
 });
